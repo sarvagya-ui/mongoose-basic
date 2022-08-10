@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 mongoose.connect(
     'mongodb://localhost:27017/test1',
@@ -16,9 +17,9 @@ const playlistSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        validate(vage) {
-            if (age < 18) {
-                throw new Error('please enter age above 18')
+        validator(vage) {
+            if (validator.isEmail(val)) {
+                throw new Error('not a valid email')
             }
         }
     },
